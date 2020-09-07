@@ -99,4 +99,30 @@ class PersonSerializers3(serializers.ModelSerializer):
             'hobbies',
             'created',
         )
+
+class ReunionSerializers2(serializers.ModelSerializer):
+
+    # son campo no obligatorio y que se mostrara a pesar de no ser parte del modelo
+    
+    activo = serializers.BooleanField(default=False)
+    fecha_hora = serializers.SerializerMethodField( )
+    
+    class Meta:
+        # Definir modelo
+        model = Reunion
+        # Definir campos del modelo, con __all__ mostramos todo 
+        # fields= ('__all__')
+        fields = (
+            'id',
+            'persona',
+            'fecha',
+            'hora',
+            'asunto',
+            
+            'activo',
+            'fecha_hora'
+        )
+    
+    def get_fecha_hora(self, obj ):
         
+        return str(obj.fecha) + '-'+ str(obj.hora)
