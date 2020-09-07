@@ -49,5 +49,10 @@ urlpatterns = [
     path(
         'api/persona/modificar/<pk>/',
         views.PersonRetrieveUpdateView.as_view(),
+    ),
+    # Para vista que no implementa un modelo en su serializador
+    path(
+        'api/personas/',
+        views.PersonaAPILista.as_view(),
     )
 ]

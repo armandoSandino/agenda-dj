@@ -17,7 +17,10 @@ from rest_framework.generics import (
 # models
 from .models  import Person
 # serializers
-from .serializers import PersonSerializers
+from .serializers import (
+    PersonSerializers, 
+    PersonaSerializer,
+) 
 
 class ListaPersona(ListView):
     
@@ -95,3 +98,15 @@ class PersonRetrieveUpdateView(RetrieveUpdateAPIView ):
     serializer_class= PersonSerializers
     # Deinfir queryset
     queryset = Person.objects.all()
+
+# Implementara un serializador no basado en modelos
+class PersonaAPILista(ListAPIView):
+    '''
+    vista para interacturar con serializador
+    '''
+    serializer_class = PersonaSerializer
+    
+
+    def get_queryset(self):
+
+        return Person.objects.all()

@@ -18,3 +18,14 @@ class PersonSerializers(serializers.ModelSerializer):
         )
         '''
         fields = ('__all__')
+
+# Definir un serializador no enlazado a un Modelo existente
+class PersonaSerializer(serializers.Serializer):
+
+    id = serializers.IntegerField()
+    full_name = serializers.CharField()
+    job = serializers.CharField()
+    email = serializers.EmailField()
+    phone = serializers.CharField()
+    # Activo, es un campo no obligatorio
+    activo = serializers.BooleanField(required=False)
