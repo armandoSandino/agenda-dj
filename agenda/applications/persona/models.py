@@ -2,6 +2,8 @@
 from model_utils.models import TimeStampedModel
 #
 from django.db import models
+# Managers
+from .managers import ReunionManager
 
 class Hobby(TimeStampedModel):
 
@@ -67,6 +69,9 @@ class Reunion(TimeStampedModel):
         max_length=100,
         blank=False
     )
+    # Deinfir el managers
+
+    objects = ReunionManager()
 
     class Meta:
         verbose_name = 'Reunion'

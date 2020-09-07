@@ -26,7 +26,8 @@ from .serializers import (
     PersonSerializers3,
     ReunionSerializers2,
     ReunionSerializerLink,
-    PersonPagination
+    PersonPagination,
+    CountReunionSerialiazer
 ) 
 
 class ListaPersona(ListView):
@@ -149,3 +150,13 @@ class PersonPaginationListAPIView(ListAPIView):
     def get_queryset(self):
 
         return Person.objects.all()
+
+
+class ReunionByPersonJobs(ListAPIView):
+
+    # definir serializador
+    serializer_class = CountReunionSerialiazer
+
+    def get_queryset(self):
+
+        return Reunion.objects.cantidad_de_reuniones_por_trabajo()

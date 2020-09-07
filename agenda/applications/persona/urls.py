@@ -69,5 +69,9 @@ urlpatterns = [
     path(
         'api/persona/pagination/',
         views.PersonPaginationListAPIView.as_view(),
+    ),
+    path(
+        'api/reunion/job/',
+        views.ReunionByPersonJobs.as_view()
     )
 ]
