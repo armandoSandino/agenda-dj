@@ -99,12 +99,12 @@ class PersonSerializers3(serializers.ModelSerializer):
             'hobbies',
             'created',
         )
-
 class ReunionSerializers2(serializers.ModelSerializer):
 
     # son campo no obligatorio y que se mostrara a pesar de no ser parte del modelo
     
     activo = serializers.BooleanField(default=False)
+    # SerializerMethodField, indica que su valor se obtendra del resultado de algunua operacion en una funcion
     fecha_hora = serializers.SerializerMethodField( )
     
     class Meta:
@@ -126,3 +126,29 @@ class ReunionSerializers2(serializers.ModelSerializer):
     def get_fecha_hora(self, obj ):
         
         return str(obj.fecha) + '-'+ str(obj.hora)
+
+
+class ReunionSerializerLink(serializers.HyperlinkedModelSerializer):
+
+      
+    class Meta:
+        # Definir modelo
+        model = Reunion
+        # Definir campos del modelo, con __all__ mostramos todo 
+        # fields= ('__all__')
+        fields = (
+            'id',
+            'persona',
+            'fecha',
+            'hora',
+            'asunto',
+        )
+        # view_name, indica la vista que deseamos cargar para el campo persona(ForeignKey)
+        # Dicha vista a ser invocada siempre debe ser un RetrieveAPIView/DetailView
+        # lookup_field, recibe los paremetros de la ruta a invocar el 'pk' esta definido en las rutas
+        extra_kwargs = {
+            'persona': {
+                'view_name': 'persona_app:person-detail',
+                'lookup_field': 'pk'
+            }
+        }

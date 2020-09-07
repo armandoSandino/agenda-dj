@@ -23,7 +23,8 @@ from .serializers import (
     PersonSerializers2,
     ReunionSerializers,
     PersonSerializers3,
-    ReunionSerializers2
+    ReunionSerializers2,
+    ReunionSerializerLink
 ) 
 
 class ListaPersona(ListView):
@@ -119,6 +120,15 @@ class ReunionListAPIView(ListAPIView):
 
     # Defini el serializador
     serializer_class = ReunionSerializers2
+
+    def get_queryset(self):
+
+        return Reunion.objects.all()
+
+class ReunionListAPIViewLink(ListAPIView):
+
+    # Defini el serializador
+    serializer_class = ReunionSerializerLink
 
     def get_queryset(self):
 
