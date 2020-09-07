@@ -54,5 +54,11 @@ urlpatterns = [
     path(
         'api/personas/',
         views.PersonaAPILista.as_view(),
+    ),
+    #####
+    # ListAPIView
+    path(
+        'api/reuniones/',
+        views.ReunionListAPIView.as_view()
     )
 ]

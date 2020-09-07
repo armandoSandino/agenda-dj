@@ -1,7 +1,7 @@
 # serializers
 from rest_framework import serializers
 # models
-from .models import Person
+from .models import Person, Reunion
 
 class PersonSerializers(serializers.ModelSerializer):
 
@@ -46,3 +46,22 @@ class PersonSerializers2(serializers.ModelSerializer):
         )
         '''
         fields = ('__all__')
+
+class ReunionSerializers(serializers.ModelSerializer):
+    
+    # con esto le diremos al serializador que en su campo 'persona' que es una clave foranea
+    # Utilice el serializador de Persona antes definido para que nos muestre los datos de la persona relacionada
+    persona = PersonaSerializer() 
+    
+    class Meta:
+        # Definir modelo
+        model = Reunion
+        # Definir campos del modelo, con __all__ mostramos todo 
+        # fields= ('__all__')
+        fields = (
+            'id',
+            'persona',
+            'fecha',
+            'hora',
+            'asunto'
+        )

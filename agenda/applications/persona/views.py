@@ -15,12 +15,13 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,
 )
 # models
-from .models  import Person
+from .models  import Person, Reunion
 # serializers
 from .serializers import (
     PersonSerializers, 
     PersonaSerializer,
-    PersonSerializers2
+    PersonSerializers2,
+    ReunionSerializers
 ) 
 
 class ListaPersona(ListView):
@@ -111,3 +112,12 @@ class PersonaAPILista(ListAPIView):
     def get_queryset(self):
 
         return Person.objects.all()
+
+class ReunionListAPIView(ListAPIView):
+
+    # Defini el serializador
+    serializer_class = ReunionSerializers
+
+    def get_queryset(self):
+
+        return Reunion.objects.all()
