@@ -11,7 +11,16 @@ urlpatterns = [
         name='personas'
     ),
     path(
-        'api/persona/list/',
+        'api/persona/lista/',
         views.PersonListAPIView.as_view(),
+    ),
+    path(
+        'lista/',
+        views.PersonListView.as_view(),
+        name='lista-persona'
+    ),
+    path(
+        'api/persona/search/<str:termino>',
+        views.PersonSearchApiView.as_view(),
     )
 ]
