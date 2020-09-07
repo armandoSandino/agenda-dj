@@ -34,5 +34,10 @@ urlpatterns = [
     path(
         'api/persona/<pk>/',
         views.PersonRetrieveAPIView.as_view(),
+    ),
+    # DestroyAPIView
+    path(
+        'api/persona/delete/<pk>/',
+        views.DestroyAPIView.as_view()
     )
 ]

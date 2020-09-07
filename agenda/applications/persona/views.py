@@ -3,10 +3,12 @@ from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 # views drf
 # RetrieveAPIView es equivalente al DetailView de Django
+# DestroyAPIView  es equivalente al DeleteView de Django
 from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
-    RetrieveAPIView
+    RetrieveAPIView,
+    DestroyAPIView
 )
 # models
 from .models  import Person
@@ -57,6 +59,8 @@ class PersonRetrieveAPIView(RetrieveAPIView):
 
     # Definir el serializador
     serializer_class = PersonSerializers
+    # Con el queryset puedes omitir la funcion get_queryset
+    # queryset = Person.objects.all()
 
     def get_queryset(self):
         # Obtener los parametros pasados por el URL
@@ -65,3 +69,11 @@ class PersonRetrieveAPIView(RetrieveAPIView):
         # pero Django Rest framework lo detecta implicitamente
         return Person.objects.filter(
         )
+       
+# DestroyAPIView  es equivalente al DeleteView de Django
+class DestroyAPIView(DestroyAPIView):
+    
+    # Definir el serializador
+    serializer_class = PersonSerializers
+    # Definir el queryset
+    queryset = Person.objects.all()
