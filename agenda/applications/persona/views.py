@@ -4,11 +4,15 @@ from django.views.generic import ListView, TemplateView
 # views drf
 # RetrieveAPIView es equivalente al DetailView de Django
 # DestroyAPIView  es equivalente al DeleteView de Django
+# UpdateAPIView es equivalente al UpdateView en Django
+# RetrieveUpdateAPIView, para que obtenga los datos a actualizar
 from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
     RetrieveAPIView,
-    DestroyAPIView
+    DestroyAPIView,
+    UpdateAPIView,
+    RetrieveUpdateAPIView,
 )
 # models
 from .models  import Person
@@ -76,4 +80,18 @@ class DestroyAPIView(DestroyAPIView):
     # Definir el serializador
     serializer_class = PersonSerializers
     # Definir el queryset
+    queryset = Person.objects.all()
+
+# UpdateAPIView es equivalente al UpdateView en Django
+class PersonUpdateView(UpdateAPIView ):
+
+    # Definir el serializador
+    serializer_class= PersonSerializers
+
+# RetrieveUpdateAPIView es equivalente al UpdateView y DetailView en Django
+class PersonRetrieveUpdateView(RetrieveUpdateAPIView ):
+
+    # Definir el serializador
+    serializer_class= PersonSerializers
+    # Deinfir queryset
     queryset = Person.objects.all()

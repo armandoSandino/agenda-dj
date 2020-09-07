@@ -39,5 +39,15 @@ urlpatterns = [
     path(
         'api/persona/delete/<pk>/',
         views.DestroyAPIView.as_view()
+    ),
+    # UpdateAPIView es equivalente al UpdateView en Django
+    path(
+        'api/persona/update/<pk>/',
+        views.PersonUpdateView.as_view(),
+    ),
+    # PersonRetrieveUpdateView
+    path(
+        'api/persona/modificar/<pk>/',
+        views.PersonRetrieveUpdateView.as_view(),
     )
 ]
