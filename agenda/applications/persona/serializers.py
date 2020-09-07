@@ -1,5 +1,8 @@
 # serializers
-from rest_framework import serializers
+from rest_framework import serializers, pagination
+
+from rest_framework.pagination import PageNumberPagination
+
 # models
 from .models import Person, Reunion, Hobby
 
@@ -152,3 +155,8 @@ class ReunionSerializerLink(serializers.HyperlinkedModelSerializer):
                 'lookup_field': 'pk'
             }
         }
+        
+
+class PersonPagination(pagination.PageNumberPagination):
+    page_size = 5
+    max_page_size = 10
