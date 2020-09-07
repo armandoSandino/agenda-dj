@@ -10,6 +10,7 @@ urlpatterns = [
         views.ListaPersona.as_view(),
         name='personas'
     ),
+    # ListAPIView
     path(
         'api/persona/lista/',
         views.PersonListAPIView.as_view(),
@@ -19,8 +20,19 @@ urlpatterns = [
         views.PersonListView.as_view(),
         name='lista-persona'
     ),
+    # ListAPIView
     path(
         'api/persona/search/<str:termino>',
         views.PersonSearchApiView.as_view(),
+    ),
+    # CreateAPIView
+    path(
+        'api/person/create/',
+        views.PersonCreateAPIView.as_view()
+    ),
+    # RetrieveAPIView or DetailView
+    path(
+        'api/persona/<pk>/',
+        views.PersonRetrieveAPIView.as_view(),
     )
 ]

@@ -2,7 +2,12 @@ from django.shortcuts import render
 # views
 from django.views.generic import ListView, TemplateView
 # views drf
-from rest_framework.generics import ListAPIView
+# RetrieveAPIView es equivalente al DetailView de Django
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView,
+    RetrieveAPIView
+)
 # models
 from .models  import Person
 # serializers
@@ -40,4 +45,23 @@ class PersonSearchApiView(ListAPIView):
         param = self.kwargs['termino']
         return Person.objects.filter(
             full_name__icontains=param
+        )
+
+class PersonCreateAPIView(CreateAPIView):
+
+    # Definir el serializador
+    serializer_class = PersonSerializers
+
+# RetrieveAPIView es equivalente al DetailView de Django
+class PersonRetrieveAPIView(RetrieveAPIView):
+
+    # Definir el serializador
+    serializer_class = PersonSerializers
+
+    def get_queryset(self):
+        # Obtener los parametros pasados por el URL
+        ID = self.kwargs['pk']
+        # Puedes pasarle el parametro ID de usuario recibido por el url 
+        # pero Django Rest framework lo detecta implicitamente
+        return Person.objects.filter(
         )
