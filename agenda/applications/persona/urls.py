@@ -9,5 +9,9 @@ urlpatterns = [
         'personas/',
         views.ListaPersona.as_view(),
         name='personas'
+    ),
+    path(
+        'api/persona/list/',
+        views.PersonListAPIView.as_view(),
     )
 ]
