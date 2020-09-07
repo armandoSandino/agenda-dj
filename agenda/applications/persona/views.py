@@ -20,6 +20,7 @@ from .models  import Person
 from .serializers import (
     PersonSerializers, 
     PersonaSerializer,
+    PersonSerializers2
 ) 
 
 class ListaPersona(ListView):
@@ -104,8 +105,8 @@ class PersonaAPILista(ListAPIView):
     '''
     vista para interacturar con serializador
     '''
-    serializer_class = PersonaSerializer
-    
+    # serializer_class = PersonaSerializer
+    serializer_class = PersonSerializers2
 
     def get_queryset(self):
 

@@ -29,3 +29,20 @@ class PersonaSerializer(serializers.Serializer):
     phone = serializers.CharField()
     # Activo, es un campo no obligatorio
     activo = serializers.BooleanField(required=False)
+
+class PersonSerializers2(serializers.ModelSerializer):
+
+    # Activo, es un campo no obligatorio y que se mostrara a pesar de no ser parte del modelo
+    activo = serializers.BooleanField(default=False)
+
+    class Meta:
+        # Definir modelo a serializar
+        model = Person
+        # Definir campos del modelo a serializar, podria utlizar __all__ para especificar todos los campos
+        '''
+        fields = (
+            'id',
+            'full_name',
+        )
+        '''
+        fields = ('__all__')
